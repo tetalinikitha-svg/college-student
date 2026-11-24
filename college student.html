@@ -1,0 +1,484 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f5fb;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: #242b64;
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    font-size: 25px;
+}
+
+header span {
+    color: #ffcc66;
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #303978;
+    color: white;
+    padding: 25px 15px;
+}
+
+.sidebar h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.sidebar a:hover {
+    background: #505b9e;
+}
+
+/* Dashboard Content */
+.main {
+    flex: 1;
+    padding: 30px;
+}
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    color: #242b64;
+    margin-bottom: 8px;
+}
+
+/* Profile */
+.profile {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px #ddd;
+}
+
+.profile img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile h2 {
+    color: #303978;
+    margin-bottom: 8px;
+}
+
+/* Statistics Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #ddd;
+    text-align: center;
+}
+
+.card h3 {
+    color: #777;
+    font-size: 16px;
+}
+
+.card p {
+    color: #303978;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+/* Sections */
+.section {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px #ddd;
+    overflow-x: auto;
+}
+
+.section h2 {
+    color: #303978;
+    margin-bottom: 18px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 450px;
+}
+
+th, td {
+    padding: 13px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #303978;
+    color: white;
+}
+
+tr:hover {
+    background: #f1f3ff;
+}
+
+/* Subjects */
+.subjects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.subject {
+    background: #eef0ff;
+    padding: 18px;
+    border-radius: 8px;
+    flex: 1 1 150px;
+    text-align: center;
+    color: #303978;
+    font-weight: bold;
+}
+
+/* Notifications */
+.notification {
+    background: #f0f2ff;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 5px solid #505bca;
+    border-radius: 5px;
+}
+
+/* Announcements */
+.announcement {
+    background: #fff4df;
+    padding: 18px;
+    margin-bottom: 12px;
+    border-left: 5px solid orange;
+    border-radius: 5px;
+}
+
+footer {
+    background: #242b64;
+    color: white;
+    text-align: center;
+    padding: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar a {
+        display: inline-block;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .profile {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <h2>🎓 Student <span>Dashboard</span></h2>
+    <p>Welcome, Student!</p>
+</header>
+
+<div class="container">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h3>My Dashboard</h3>
+    <a href="#profile">👤 Profile</a>
+    <a href="#attendance">📊 Attendance</a>
+    <a href="#marks">📝 Marks</a>
+    <a href="#timetable">📅 Timetable</a>
+    <a href="#subjects">📚 Subjects</a>
+    <a href="#notifications">🔔 Notifications</a>
+    <a href="#announcements">📢 Announcements</a>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+    <div class="welcome">
+        <h1>Welcome Back, Student!</h1>
+        <p>Here is your academic overview.</p>
+    </div>
+
+    <!-- Student Profile -->
+    <div class="profile" id="profile">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200"
+             alt="Student Profile">
+        <div>
+            <h2>Priya Sharma</h2>
+            <p>Student ID: 2026BTECH101</p>
+            <p>Course: B.Tech Computer Science</p>
+            <p>Year: First Year</p>
+            <p>Email: priya@example.com</p>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="cards">
+        <div class="card">
+            <h3>Attendance</h3>
+            <p>92%</p>
+        </div>
+
+        <div class="card">
+            <h3>Average Marks</h3>
+            <p>85%</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Subjects</h3>
+            <p>6</p>
+        </div>
+
+        <div class="card">
+            <h3>Notifications</h3>
+            <p>4</p>
+        </div>
+    </div>
+
+    <!-- Attendance -->
+    <div class="section" id="attendance">
+        <h2>📊 Attendance Details</h2>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Classes Attended</th>
+                <th>Total Classes</th>
+                <th>Percentage</th>
+            </tr>
+            <tr>
+                <td>Mathematics</td>
+                <td>45</td>
+                <td>50</td>
+                <td>90%</td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>48</td>
+                <td>50</td>
+                <td>96%</td>
+            </tr>
+            <tr>
+                <td>Web Development</td>
+                <td>42</td>
+                <td>50</td>
+                <td>84%</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Marks -->
+    <div class="section" id="marks">
+        <h2>📝 Academic Marks</h2>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Internal Marks</th>
+                <th>Maximum Marks</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <td>Mathematics</td>
+                <td>45</td>
+                <td>50</td>
+                <td>A+</td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>42</td>
+                <td>50</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>Web Development</td>
+                <td>46</td>
+                <td>50</td>
+                <td>A+</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Timetable -->
+    <div class="section" id="timetable">
+        <h2>📅 Class Timetable</h2>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>9:20 - 10:20</th>
+                <th>10:20 - 11:20</th>
+                <th>11:30 - 12:30</th>
+                <th>1:30 - 2:30</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td>Maths</td>
+                <td>Python</td>
+                <td>English</td>
+                <td>Web Dev</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>Python</td>
+                <td>Maths</td>
+                <td>Web Dev</td>
+                <td>Physics</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>English</td>
+                <td>Physics</td>
+                <td>Python</td>
+                <td>Maths</td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>Web Dev</td>
+                <td>Python</td>
+                <td>Maths</td>
+                <td>English</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>Physics</td>
+                <td>Maths</td>
+                <td>English</td>
+                <td>Python</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Subjects -->
+    <div class="section" id="subjects">
+        <h2>📚 My Subjects</h2>
+        <div class="subjects">
+            <div class="subject">Mathematics</div>
+            <div class="subject">Python Programming</div>
+            <div class="subject">Web Development</div>
+            <div class="subject">English</div>
+            <div class="subject">Physics</div>
+            <div class="subject">Computer Science</div>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="section" id="notifications">
+        <h2>🔔 Notifications</h2>
+        <div class="notification">
+            Python Assignment submission deadline is tomorrow.
+        </div>
+        <div class="notification">
+            Web Development practical exam scheduled this week.
+        </div>
+        <div class="notification">
+            Mathematics internal marks have been updated.
+        </div>
+    </div>
+
+    <!-- Announcements -->
+    <div class="section" id="announcements">
+        <h2>📢 College Announcements</h2>
+        <div class="announcement">
+            <h3>Hackathon Registration</h3>
+            <p>College hackathon registrations are now open!</p>
+        </div>
+        <div class="announcement">
+            <h3>Sports Day</h3>
+            <p>Annual sports day will be conducted next month.</p>
+        </div>
+        <div class="announcement">
+            <h3>Holiday Notice</h3>
+            <p>College will remain closed on the announced holiday.</p>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Student Dashboard | Designed for Students 🎓</p>
+</footer>
+
+</body>
+</html>
